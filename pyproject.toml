@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rpg_gpmf"
+version = "2.0"
+description = "Paket-Fassade fuer rpg_gpmf."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "RalfPeter", email = "ralfpeter.bergheim@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "gpxpy",
+    "overpy",
+    "pyexiv2",
+    "rpg_geo",
+    "rpg_gpx",
+    "rpg_utils",
+    "scipy"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
