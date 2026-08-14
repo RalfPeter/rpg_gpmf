@@ -10,20 +10,24 @@ Eine leistungsfähige, modulare Python-Framework-Suite zur Extraktion und Verarb
 
 Das Framework **rpg-tools** stellt die zentrale Bibliothek dar, auf der Anwendungs-Suites wie **[gopro-tools](https://github.com/RalfPeter/gopro-tools)** (GUIs und CLI-Skripte) aufbauen:
 
-  ┌───────────────────────────────────────────────────────────────────────────────────┐
-  │                                    gopro-tools                                    │
-  │        (Anwendungen: gui_gopro2file, gui_gopro2overlay, CLI Pipelines)            │
-  └─────────────────────────────────────────┬─────────────────────────────────────────┘
-                                            │  nutzt als Bibliothek
-                                            ▼
-  ┌─────────────────────────────────────────────────────────────────────────────────────┐
-  │                                     rpg-tools                                       │
-  │                              (Core Framework Suite)                                 │
-  ├───────────┬───────────┬───────────┬────────────────┬───────────────────┬────────────┤
-  │ rpg_gpmf  │  rpg_geo  │  rpg_gpx  │    rpg_gui     │     rpg_utils     │rpg_overlay │
-  │Telemetrie │Geocoding  │GPX Tracks │ PySide6 Base   │ Shared Utilities  │ Video      │
-  │GPMF KLV   │GeoNames   │Schema / IO│ Templates/Utils│ Logger/Config/Math│ Overlays   │
-  └───────────┴───────────┴───────────┴────────────────┴───────────────────┴────────────┘
+```mermaid
+flowchart TD
+    GOPRO["<b>gopro-tools</b><br/>(Anwendungen: gui_gopro2file, gui_gopro2overlay, CLI Pipelines)"]
+
+    GOPRO -->|nutzt als Bibliothek| RPG["<b>rpg-tools</b><br/>(Core Framework Suite)"]
+
+    subgraph Modules [" "]
+        direction LR
+        M1["<b>rpg_gpmf</b><br/>Telemetrie<br/>GPMF KLV"]
+        M2["<b>rpg_geo</b><br/>Geocoding<br/>GeoNames"]
+        M3["<b>rpg_gpx</b><br/>GPX Tracks<br/>Schema / IO"]
+        M4["<b>rpg_gui</b><br/>PySide6 Base<br/>Templates/Utils"]
+        M5["<b>rpg_utils</b><br/>Shared Utilities<br/>Logger/Config/Math"]
+        M6["<b>rpg_overlay</b><br/>Video<br/>Overlays"]
+    end
+
+    RPG --- Modules
+```
 
 ---
 
@@ -112,31 +116,31 @@ Präzise Bestimmung von Zeitzonen anhand räumlicher und zeitlicher Daten:
 
 ### Architektur & Integrationsmodell
 
-                    +------------------------+
-                    |      gpmf_const        |
-                    +-----------+------------+
-                                |
-        +-----------------------+-----------------------+
-        |                       |                       |
-+-------v------+        +-------v------+        +-------v------+
-|  gpmf_ffmpeg |        |   gpmf_geo   |        |   gpmf_dem   |
-+-------+------+        +-------+------+        +-------+------+
-        |                       |                       |
-        |               +-------v------+                |
-        |               |   gpmf_tz    |                |
-        |               +-------+------+                |
-        |                       |                       |
-+-------v-----------------------v-----------------------v-------+
-|                      gpmf_exif / gpmf_file                    |
-+-------------------------------+-------------------------------+
-                                |
-                        +-------v------+
-                        |  gpmf_track  |
-                        +-------+------+
-                                |
-                        +-------v------+
-                        |  gpmf_gpmf   |
-                        +--------------+
+```mermaid
+flowchart TD
+    CONST["gpmf_const"]
+
+    FFMPEG["gpmf_ffmpeg"]
+    GEO["gpmf_geo"]
+    DEM["gpmf_dem"]
+    TZ["gpmf_tz"]
+    EXIF_FILE["gpmf_exif / gpmf_file"]
+    TRACK["gpmf_track"]
+    GPMF["gpmf_gpmf"]
+
+    CONST --> FFMPEG
+    CONST --> GEO
+    CONST --> DEM
+
+    GEO --> TZ
+
+    FFMPEG --> EXIF_FILE
+    TZ --> EXIF_FILE
+    DEM --> EXIF_FILE
+
+    EXIF_FILE --> TRACK
+    TRACK --> GPMF
+```
 
 Konfiguration & Basiskomponenten (gpmf_const, gpmf_ffmpeg): Stellen Systempfade, Standard-Schwellenwerte und externe Executables für alle übergeordneten Module bereit.
 
