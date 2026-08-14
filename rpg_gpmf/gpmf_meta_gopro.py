@@ -1,34 +1,23 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_meta_gopro.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 1075
-#  Abhängigkeiten    : cProfile, datetime, enum, functools, hashlib, json, mmap, pathlib, re, struct, typing
-#  Klassen           : NoGoProError, NoGpmfError, ExtractionMethod, GPMFExtractor, GoProFile, GpmfFile, GpmfFiles
-#                     GoProRenamer
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    GPMFExtractor                                        → Liest GPMF-Daten aus GoPro MP4-Videos oder Binärdateien.
-#      gpmf_metadata()                                    → Lazy-Loading Property für die Rohdaten der ffprobe JSON-Ausgabe.
-#      get_raw_telemetry(ExtractionMethod, bool, 
-#                        cProfile.Profile)                → Zentrale öffentliche Methode, die alle unterschiedlichen Lese-Mechanismen verbirgt.
-#
-#    GoProFile                                            → Liest GPMF-Daten aus GoPro MP4-Videos oder Binärdateien.
-#      data()                                             → Gibt das ermittelte GoPro-Modell zurück.
-#      related_files(Path)                                → Findet alle zugehörigen Kapitel-Dateien einer GoPro-Aufnahme.
-#      get_gpmf(bool, bool, cProfile.Profile)             → Keine Beschreibung.
-#
-#    GoProRenamer                                         → Klasse zur konsistenten Verarbeitung und Umbenennung von GoPro-Videosequenzen samt Begleitdateien.
-#      rename_sequences(GoProRecordingGroups)             → Benennt GoPro-Kapitel und alle zugehörigen Begleitdateien fortlaufend um.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_meta_gopro.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 1075
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : ExtractionMethod, GPMFExtractor, GoProFile, GoProRenamer, GpmfFile, GpmfFiles, NoGoProError
+#                       NoGpmfError
 # ------------------------------------------------------------------------------
 
 import re

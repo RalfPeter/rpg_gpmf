@@ -1,32 +1,17 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_ffmpeg.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 287
-#  Abhängigkeiten    : collections, configparser, os, pathlib, platform, re, shutil, subprocess, sys
-#  Klassen           : FfmpegConfig, FfmpegTools
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    FfmpegConfig                                         → read path of ffmpeg / ffprobe from configuration file
-#      load_config_file(l_ffmpeg, l_ffprobe)              → Load config file to check for ffmpeg path overrides
-#
-#    FfmpegTools                                          → Keine Beschreibung.
-#      to_int(str)                                        → Hilfsmethode zur sicheren Konvertierung in einen Integer.
-#      run_cmd_raw(cmd, args)                             → Führt einen nativen System-Befehl abgetrennt im Hintergrund aus.
-#      call_ffmpeg(list[str])                             → Ruft das konfigurierte FFmpeg-Binary mit Argumenten auf.
-#      call_ffprobe(list[str])                            → Ruft das konfigurierte FFprobe-Binary mit Argumenten auf.
-# ------------------------------------------------------------------------------
-#  Globale Funktionen:
-#    get_ffmpeg_service(bool)                             → Gibt die Singleton-Instanz der FfmpegTools zurück.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_ffmpeg.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 287
+#  Abhängigkeiten     : collections, configparser, os, pathlib, platform, re, shutil, subprocess, sys
+#  Klassen            : FfmpegConfig, FfmpegTools
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

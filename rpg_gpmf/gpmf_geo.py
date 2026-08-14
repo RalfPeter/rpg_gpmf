@@ -1,73 +1,23 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_geo.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 1572
-#  Abhängigkeiten    : abc, cProfile, dataclasses, datetime, overpy, pathlib, pstats, scipy, threading, time, typing
-#                     zoneinfo
-#  Klassen           : BaseGeoDB (ABC), BaseGeoNamesDB (ABC), GeoNamesDB, GeoAlternatenamesDB, GeoCitiesDB
-#                     GeoCountriesDB, CountryResolver, GeoLocator, Elevation, GeoOSM
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    BaseGeoDB                                            → Abstrakte Basisklasse für geografische Datenbanken.
-#      data()                                             → Gibt die geladenen Rohdaten der Geo-Datenbank zurück.
-#      data_count()                                       → Gibt die Gesamtanzahl der Einträge zurück.
-#      sources()                                          → Gibt die Liste der aktuell registrierten Quelldateien (ZIP-Name, Zielpfad) zurück.
-#      idlookup()                                         → Gibt das GeonameID-zu-Namen Lookup-Dictionary zurück.
-#      countries()                                        → Gibt die geladenen Ländercodes (ISO-2) zurück.
-#      search(float, float, int, str, bool, str)          → Universelle KDTree-Suche für alle Geo-Datenbanken mit dynamischer Sprachauflösung.
-#      get_elevation(float, float)                        → Universelle KDTree-Suche für die Geländehöhe (DEM).
-#      get_tzinfo(float, float)                           → Ermittelt die IANA-Zeitzone für gegebene Koordinaten.
-#
-#    BaseGeoNamesDB                                       → Verwaltet die GeoNames-Datenbasis mit instanzbasiertem Daten-Lifecycle.
-#      ensure_country_loaded(str)                         → Stellt sicher, dass ein Land in der Laufzeit-Struktur vorhanden ist.
-#      add_country(str)                                   → Lädt ein einzelnes Land dynamisch nach und merget es mit den bestehenden Instanzdaten.
-#
-#    GeoCitiesDB                                          → Verwaltet die GeoCities-Datenbasis.
-#      alpha2_from_coords(float, float)                   → Ermittelt den Alpha-2 Code direkt über den KDTree der Städte-DB.
-#
-#    GeoCountriesDB                                       → Verwaltet die GeoCountries-Datenbasis.
-#      resolvermap()                                      → Gibt die vorbereitete Resolver-Map für den schnellen Zugriff zurück.
-#
-#    CountryResolver                                      → Ermittelt Länderinformationen über entkoppelte Lazy-Properties der Service-Instanzen.
-#      iso3_and_name(str, str)                            → Gibt ISO3 und lokalisierten Namen zurück. Priorisiert die gewählte Sprache.
-#      alpha2_from_coords(float, float)                   → Ermittelt den Alpha-2 Code aus Koordinaten via GeoCitiesDB.
-#      get_tzinfo(float, float)                           → Ermittelt die IANA-Zeitzone für gegebene Koordinaten über GeoCitiesDB.
-#      get_elevation(float, float)                        → Universelle KDTree-Suche für die Geländehöhe (DEM).
-#
-#    GeoLocator                                           → Ermittelt vollständige Adressdaten für Koordinaten auf Instanz-Ebene.
-#      get_geonames_information(float, float)             → Gecachte Standortermittlung.
-#      get_tzinfo(float, float)                           → Ermittelt die IANA-Zeitzone für gegebene Koordinaten.
-#      get_elevation(float, float)                        → Universelle KDTree-Suche für die Geländehöhe (DEM).
-#
-#    Elevation                                            → Höhenabfrage für GPS-Punkte.
-#      get_elevation(GeoPoint)                            → Ruft die geografische Höhe für einen GPS-Punkt ab.
-#
-#    GeoOSM                                               → Straßensuche via OSM Overpass API.
-#      search(float, float, float)                        → Sucht Straßen in einem Radius um gegebene Koordinaten.
-# ------------------------------------------------------------------------------
-#  Globale Funktionen:
-#    initialize_all_geo_services(bool, bool, 
-#                                Profile)                 → Initialisiert alle geografischen Singleton-Dienste in der korrekten strukturellen Stufen-Reihenfolge.
-#    get_geolocator_service(bool, bool)                   → Singleton-Getter für GeoLocator. Berücksichtigt DEFAULT_GEOLOCATOR_USE.
-#    get_geonames_service(list[FilePath], 
-#                         list[str], bool, bool)          → Singleton-Getter für GeoNamesDB. Berücksichtigt DEFAULT_GEONAMES_USE.
-#    get_geoalternatenames_service(list[FilePath], 
-#                                  list[str], bool, bool) → Singleton-Getter für GeoAlternatenamesDB mit automatischer Quell-Synchronisation.
-#    get_geocities_service(list[FilePath], 
-#                          list[str], bool, bool)         → Singleton-Getter für GeoCitiesDB. Berücksichtigt DEFAULT_GEOCITIES_USE.
-#    get_geocountries_service(bool, bool)                 → Singleton-Getter für GeoCountriesDB. Berücksichtigt DEFAULT_GEONAMES_USE.
-#    get_countryresolver_service(bool, bool)              → Singleton-Getter für CountryResolver. Berücksichtigt DEFAULT_GEONAMES_USE.
-#    get_elevation_service(bool)                          → Singleton-Getter für den zentralen Höhen-Dienst (Elevation).
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_geo.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 1572
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : BaseGeoDB (ABC), BaseGeoNamesDB (ABC), CountryResolver, Elevation, GeoAlternatenamesDB
+#                       GeoCitiesDB, GeoCountriesDB, GeoLocator, GeoNamesDB, GeoOSM
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

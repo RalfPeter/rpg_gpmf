@@ -1,30 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_exif.py
-#  Version           : 2.3
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 979
-#  Abhängigkeiten    : datetime, pathlib, pyexiv2, re, shutil
-#  Klassen           : EExiv2
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    EExiv2                                               → Wrapper-Klasse für pyexiv2 zur vereinfachten Verwaltung und Korrektur von Bildmetadaten.
-#      read_exif()                                        → Liest, korrigiert und normalisiert die EXIF-Metadaten des Bildes.
-#      read_iptc()                                        → Liest, korrigiert und synchronisiert IPTC-Daten basierend auf EXIF-Referenzen.
-#      read_xmp()                                         → Liest XMP-Daten aus und loggt bei Bedarf spezifische Region- oder Personentags.
-#      close()                                            → Schließt die pyexiv2-Bildressource explizit.
-#      read_creationdate(GeoPoint)                        → Liest den EXIF-Zeitstempel der ursprünglichen Aufnahme (DateTimeOriginal).
-#      write_exif(datetime, str, GeoPointTime, 
-#                 tzinfo)                                 → Schreibt EXIF-Metadaten (Datum, Autor, Geolocation) in das Bildobjekt.
-#      read_geolocation()                                 → Extrahiert und konvertiert GPS-Koordinaten aus den EXIF-Tags in ein GeoPoint-Objekt.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_exif.py
+#  Version            : 2.3
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 979
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : EExiv2
 # ------------------------------------------------------------------------------
 
 import re

@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_geo_schema.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 38
-#  Abhängigkeiten    : dataclasses
-#  Klassen           : GeoInfo, GeoNeighbor
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_geo_schema.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 38
+#  Abhängigkeiten     : dataclasses
+#  Klassen            : GeoInfo, GeoNeighbor
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

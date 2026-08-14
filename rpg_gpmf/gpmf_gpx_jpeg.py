@@ -1,26 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_gpx_jpeg.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 610
-#  Abhängigkeiten    : cProfile, dataclasses, datetime, io, pathlib, pstats, typing
-#  Klassen           : GGPXJpegManager
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    GGPXJpegManager                                      → Verarbeitet eine Liste JPEG mit Geo-Items (den JPEG-Metadaten) und reichert diese.
-#      nearest_location_or_time()                         → Füllt fehlende GPS-Daten oder Zeitstempel mittels der geladenen GPX-Dateien auf.
-#      rename_jpegfiles(list[GeoPointRef], 
-#                       list[GeoPointRef])                → Führt das zeitbasierte Umbenennen von Dateien auf zwei separaten Listen aus.
-#      add_metadata(list[GeoPointRef])                    → Schreibt die ermittelten Geokoordinaten und Zeitstempel direkt in die EXIF-Daten der Bilder.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_gpx_jpeg.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 610
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : GGPXJpegManager
 # ------------------------------------------------------------------------------
 
 from cProfile import Profile

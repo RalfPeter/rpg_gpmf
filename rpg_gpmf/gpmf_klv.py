@@ -1,34 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_klv.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 839
-#  Abhängigkeiten    : collections, dataclasses, struct, typing
-#  Klassen           : KLVItemList, KLVParser
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    KLVItemList                                          → Parser für die binäre GPMF-Datenstruktur (GoPro Metadata Format).
-#      create_itemstruct()                                → Erstellt die hierarchische Struktur der KLV-Items aus den Rohdaten.
-#      create_itemlist()                                  → Erstellt eine flache Liste aller KLV-Elemente aus der hierarchischen Struktur.
-#      create_itemdict()                                  → Konsolidiert die hierarchischen KLV-Daten in ein Dictionary, gruppiert nach Geräten (DEVC).
-#      get_all_stream_types()                             → Extrahiert alle eindeutigen Stream-Typen (FourCCs) und ihre Namen
-#
-#    KLVParser                                            → Kapselt die gesamte Logik zum Parsen von KLV-Item-Werten.
-#      parse_value(KLVItem, KLVItem, 
-#                  str | list[str])                       → Der Haupt-Parser, der Werte aus einem KLVItem extrahiert.
-# ------------------------------------------------------------------------------
-#  Globale Funktionen:
-#    map_type(bytes | str | int)                          → Transformiert ein GPMF-Typzeichen in einen Python-struct Formatcode.
-#    map_size(str)                                        → Bestimmt die Byte-Länge eines struct-Typs.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_klv.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 839
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : KLVItemList, KLVParser
 # ------------------------------------------------------------------------------
 
 import struct

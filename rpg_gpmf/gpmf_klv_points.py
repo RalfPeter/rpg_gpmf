@@ -1,24 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_klv_points.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 695
-#  Abhängigkeiten    : datetime, typing
-#  Klassen           : StreamItems, GPSItems, GyroItems, AcclItems, FaceItems
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    StreamItems                                          → Keine Beschreibung.
-#      parse_value(KLVItem, KLVItem, 
-#                  str | list[str])                       → Hilfsmethode zur Weiterleitung des Parsing-Vorgangs an den KLVParser.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_klv_points.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 695
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : AcclItems, FaceItems, GPSItems, GyroItems, StreamItems
 # ------------------------------------------------------------------------------
 
 from typing import TypeVar, Generic, Any

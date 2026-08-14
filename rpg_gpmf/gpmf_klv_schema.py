@@ -1,35 +1,21 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_klv_schema.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 587
-#  Abhängigkeiten    : dataclasses, datetime, typing
-#  Klassen           : NESTEDData, ANYData, GPSData, ACCLData, GYROData, FACEData, KLVItem, STRMBlock, DEVCBlock
-#                     ConsolidatedDEVCBlock
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    ACCLData                                             → Repräsentiert einen einzelnen 3-Achsen-Beschleunigungssensor-Datenpunkt.
-#      with_coords(float, float, float)                   → Erzeugt eine Kopie mit optional aktualisierten x/y/z-Koordinaten.
-#
-#    GYROData                                             → Repräsentiert einen einzelnen 3-Achsen-Gyroskop-Datenpunkt.
-#      with_coords(float, float, float)                   → Erzeugt eine Kopie mit optional aktualisierten x/y/z-Koordinaten.
-#
-#    FACEData                                             → Repräsentiert einen einzelnen Datenpunkt zur Gesichtserkennung (einfache Form).
-#      with_coords(str)                                   → Erzeugt eine Kopie mit optional aktualisiertem 'project'-Wert.
-#
-#    KLVItem                                              → Repräsentiert ein einzelnes GPMF-KLV-Element (Key-Length-Value).
-#      as_str()                                           → Dekodiert den Value-Bytes als String (Standard-Dekodierung, Fehler ersetzt).
-#      as_ints()                                          → Gibt den Value-Bytes als Liste von Integer-Werten (0-255) zurück.
-#      with_value(bytes | list[KLVItem])                  → Erzeugt eine Kopie des KLVItem mit einem neuen 'value'.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_klv_schema.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 587
+#  Abhängigkeiten     : argparse, ctypes, dataclasses, datetime, enum, fractions, http, inspect, logging, pathlib
+#                       platform, re, sys, tempfile, textwrap, traceback, typing, zoneinfo
+#  Externe Frameworks : requests, tzlocal, yaml
+#  Eigene Frameworks  : rpg_utils
+#  Klassen            : ACCLData, ANYData, ConsolidatedDEVCBlock, DEVCBlock, FACEData, GPSData, GYROData, KLVItem
+#                       NESTEDData, STRMBlock
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

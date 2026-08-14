@@ -1,32 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_gpx.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 883
-#  Abhängigkeiten    : bisect, datetime, glob, gpxpy, math, pathlib, scipy, typing
-#  Klassen           : GGPX, GGPXManager
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    GGPX                                                 → Verwaltet das Laden, Parsen, Filtern sowie die hochperformante räumliche.
-#      is_empty_gpx(GPX, str)                             → Prüft, ob eine geladene GPX-Struktur leer ist oder keine Punkte enthält.
-#      prepare_search_structures(bool)                    → Bereitet die flachen Listen und KDTrees intern für alle geladenen Dateien vor.
-#      find_nearest_by_timestamp(Path, datetime)          → Sucht den zeitlich nächsten Trackpunkt mittels schneller Binärsuche (O(log N)).
-#      find_nearest_by_position(Path, GeoPoint)           → Sucht den räumlich nächsten Wegpunkt basierend auf Koordinaten via KDTree.
-#
-#    GGPXManager                                          → Verwaltet Operationen, die über eine Liste von GPX-Dateien oder ein Verzeichnis ausgeführt werden.
-#      add_description_to_gpxfiles()                      → Fügt allen GPS-Punkten in einer Liste von GPX-Dateien Beschreibungen und Höhenmeter hinzu und speichert die Datei zurück.
-#      merge_gpx_files(Path, str | list[str], Path)       → Führt alle Tracks aus den GPX-Dateien, die einem Muster entsprechen, in einer neuen Datei zusammen.
-#      merge_overlapping_gpx_files(Path, Path)            → Führt Tracks zusammen und versucht, sich überlappende Tracks nach Zeitstempel des letzten Punktes zu verbinden.
-#      merge_overlapping_gpx_files_2(Path, Path)          → Führt Tracks zusammen, die sich nicht zeitlich überschneiden (Segment-Bounds-Prüfung).
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_gpx.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 883
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : GGPX, GGPXManager
 # ------------------------------------------------------------------------------
 
 import glob

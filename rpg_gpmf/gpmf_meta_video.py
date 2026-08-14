@@ -1,47 +1,23 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_meta_video.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 1146
-#  Abhängigkeiten    : dataclasses, datetime, functools, json, pathlib, re, typing
-#  Klassen           : Meta, NoVideoError, NoSRTError, NoMetaError, SRTMetadataAdapter, VideoFile, VideoFiles
-#                     SRTExtractor, SRTFiles
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    SRTMetadataAdapter                                   → Spezialisierter Adapter zum Parsen moderner DJI SRT-Dateien.
-#      is_dji_video(Path)                                 → Prüft anhand der Begleitdatei, ob es sich um ein DJI-Video handelt.
-#      find_first_coordinate_in_text(str)                 → Sucht im bereits geladenen Text der SRT-Datei nach dem ersten gültigen Fix.
-#      extract_first_valid_coordinate(Path)               → Analysiert die SRT-Datei und liefert das erste echte Koordinatenpaar zurück.
-#
-#    VideoFile                                            → Liest gmpf Daten aus einer MP4-Video- oder Binärdatei.
-#      geocities()                                        → Lazy-Loading Property für den GeoCitiesDB-Singleton-Dienst.
-#      model()                                            → Gibt das ermittelte GoPro-Modell zurück.
-#      firmware()                                         → Gibt das ermittelte GoPro-Modell zurück.
-#      start_time()                                       → Gibt das Erstellungsdatum des Videos zurück.
-#      duration()                                         → Gibt das Erstellungsdatum des Videos zurück.
-#      size()                                             → Gibt das Erstellungsdatum des Videos zurück.
-#      creation()                                         → Gibt das Erstellungsdatum des Videos zurück.
-#      gps_datetime()                                     → Gibt die GPS-Zeit (UTC) des Videos zurück.
-#      gps_point()                                        → Gibt die GPS-Zeit (UTC) des Videos zurück.
-#      gps_latitude()                                     → Gibt die GPS-Zeit (UTC) des Videos zurück.
-#      gps_longitude()                                    → Gibt die GPS-Zeit (UTC) des Videos zurück.
-#      tz()                                               → Gibt die Zeitzone der Aufnahme zurück.
-#      user()                                             → Gibt den zugewiesenen Benutzer zurück.
-#      user(str)                                          → Erlaubt das Setzen des Benutzers.
-#      rename(str, datetime, str)                         → Benennt die Datei physisch um, sofern der neue Name nicht bereits existiert.
-#      thumbnail(int, bool)                               → Erzeugt ein Vorschaubild an einer definierten Position im Video.
-#
-#    SRTExtractor                                         → Parser zum Transformieren einer DJI SRT-Datei in eine Liste von GPSData-Objekten.
-#      geocities()                                        → Lazy-Loading Property für den GeoCitiesDB-Singleton-Dienst.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_meta_video.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 1146
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : Meta, NoMetaError, NoSRTError, NoVideoError, SRTExtractor, SRTFiles, SRTMetadataAdapter
+#                       VideoFile, VideoFiles
 # ------------------------------------------------------------------------------
 
 import re

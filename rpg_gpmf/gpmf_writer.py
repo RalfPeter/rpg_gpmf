@@ -1,41 +1,22 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_writer.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 468
-#  Abhängigkeiten    : enum, os, pathlib, tempfile, zipfile
-#  Klassen           : FileType, GoProFileWrite, GoProFile2TV
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    GoProFileWrite                                       → Verwaltet die Dateipfade und schreibt die generierten Inhalte
-#      write_bin(bytes)                                   → Schreibt die rohen Binärdaten.
-#      write_hex(list[KLVItem])                           → Generiert und schreibt die Hex-Ansicht der KLV-Daten.
-#      write_kml(list[GPSData])                           → Generiert und schreibt die KML-Datei.
-#      write_gpx(list[GPSData], bool)                     → Generiert und schreibt die Standard-GPX-Datei.
-#      write_gpx_temp(list[GPSData], bool)                → Generiert und schreibt eine temporäre GPX-Datei.
-#      write_virb(list[GPSData], bool)                    → Generiert und schreibt die VIRB-kompatible GPX-Datei.
-#      write_srt(GPXTrackInfo, bool)                      → Generiert und schreibt die VIRB-kompatible GPX-Datei.
-#      write_csv_gyro(list[GYROData])                     → Generiert und schreibt die Gyroskop-CSV-Datei.
-#      write_csv_accl(list[ACCLData])                     → Generiert und schreibt die Beschleunigungssensor-CSV-Datei.
-#      write_csv_gps(list[GPSData])                       → Generiert und schreibt die GPS-CSV-Datei.
-#      write_json(list[KLVItem])                          → Generiert und schreibt die JSON-Datei.
-#      write_zip(bool)                                    → Erstellt ein ZIP-Archiv aller zuvor generierten Dateien.
-#
-#    GoProFile2TV                                         → Konvertiert GoPro-Videos für TV-Wiedergabe via HEVC NVENC.
-#      is_gopro()                                         → Prüft anhand der ffprobe-Metadaten, ob es sich um ein GoPro-Video handelt.
-#      convert()                                          → Konvertiert das GoPro-Video für TV-Wiedergabe.
-#      move_original()                                    → Verschiebt die Quelldatei in den Unterordner 'Original'.
-#      run()                                              → Führt den vollständigen Workflow aus:
-#      process_folder(Path, int, bool)                    → Verarbeitet alle MP4-Dateien in einem Ordner.
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_writer.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 468
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : FileType, GoProFile2TV, GoProFileWrite
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

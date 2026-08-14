@@ -1,49 +1,23 @@
 #!/usr/bin/env python
 # ------------------------------------------------------------------------------
-# 10-08-2026
+# 13-08-2026
 # RalfPeter <ralfpeter.bergheim@gmail.com>
 # https://github.com/RalfPeter/
 #
 # Released under GNU GENERAL PUBLIC LICENSE v3. (Use at your own risk)
 # ------------------------------------------------------------------------------
-#  Programm          : gpmf_gpx_generators.py
-#  Version           : 2.0
-#  Beschreibung      : Keine Beschreibung verfügbar.
-#  Zeilen            : 956
-#  Abhängigkeiten    : abc, json, locale, typing, xml
-#  Klassen           : BaseGenerator (ABC), GPXGenerator, GPXGeneratorTrackinfo, KMLGenerator, JSONGenerator
-#                     HEXGenerator, GPSCSVGenerator, GyroCSVGenerator, ACCLCSVGenerator
-# ------------------------------------------------------------------------------
-#  Public Methoden:
-#    BaseGenerator                                        → Abstrakte Basisklasse für alle Telemetrie- und Inhaltsgeneratoren.
-#      generate()                                         → Abstrakte Methode zur Generierung des Zielformats.
-#
-#    GPXGenerator                                         → Kapselt die Logik zur Erstellung von GPX 1.1 Dateien aus GPSData-Punkten.
-#      generate(int)                                      → Erstellt den vollständigen GPX-Inhalt basierend auf den Instanzdaten.
-#      generate_virb(int)                                 → Erstellt den vollständigen GPX-Inhalt im Garmin VIRB-kompatiblen Format.
-#
-#    GPXGeneratorTrackinfo                                → Erstellt GPX-Dateien direkt aus einem GPXTrackInfo-Datenobjekt.
-#      generate()                                         → Erstellt den vollständigen GPX-Inhalt basierend auf den Trackinfo-Daten.
-#
-#    KMLGenerator                                         → Generiert eine KML-Datei (Keyhole Markup Language) aus einer Liste von GPSData-Objekten.
-#      generate()                                         → Generiert den vollständigen KML-Inhalt als formatierten XML-String.
-#
-#    JSONGenerator                                        → Konvertiert eine Liste von KLV-Elementen (Telemetry-Daten) in einen
-#      generate()                                         → Konvertiert die KLV-Elemente der Instanz in einen formatierten JSON-String.
-#
-#    HEXGenerator                                         → Konvertiert eine Liste von KLV-Elementen in eine hexadezimale
-#      generate()                                         → Konvertiert die KLV-Elemente der Instanz in eine Hex-Struktur und
-#
-#    GPSCSVGenerator                                      → Erzeugt einen CSV-String mit GPS-Telemetriedaten aus einer Liste
-#      generate()                                         → Konvertiert die GPS-Datenpunkte der Instanz basierend auf den gesetzten
-#
-#    GyroCSVGenerator                                     → Erzeugt einen CSV-String mit Gyroskop-Telemetriedaten aus einer Liste
-#      generate()                                         → Konvertiert die Gyroskop-Datenpunkte der Instanz in einen
-#
-#    ACCLCSVGenerator                                     → Erzeugt einen CSV-String mit Beschleunigungssensor-Telemetriedaten aus einer Liste
-#      generate()                                         → Konvertiert die Beschleunigungs-Datenpunkte der Instanz in einen
-# ------------------------------------------------------------------------------
-#  Copyright (C) 2026 <ralfpeter.bergheim@gmail.com>
+#  Programm           : gpmf_gpx_generators.py
+#  Version            : 2.0
+#  Beschreibung       : Keine Beschreibung verfügbar.
+#  Zeilen             : 956
+#  Abhängigkeiten     : abc, argparse, bisect, cProfile, collections, configparser, ctypes, dataclasses, datetime, enum
+#                       fractions, functools, glob, hashlib, http, inspect, io, json, locale, logging, math, mmap, os
+#                       pathlib, pickle, platform, pstats, re, shutil, struct, subprocess, sys, tempfile, textwrap
+#                       threading, time, traceback, typing, xml, zipfile, zoneinfo
+#  Externe Frameworks : gpxpy, lxml, numpy, overpy, pandas, pyexiv2, requests, scipy, tzlocal, yaml
+#  Eigene Frameworks  : rpg_geo, rpg_gpmf, rpg_gpx, rpg_utils
+#  Klassen            : ACCLCSVGenerator, BaseGenerator (ABC), GPSCSVGenerator, GPXGenerator, GPXGeneratorTrackinfo
+#                       GyroCSVGenerator, HEXGenerator, JSONGenerator, KMLGenerator
 # ------------------------------------------------------------------------------
 
 from __future__ import annotations

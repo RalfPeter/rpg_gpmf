@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rpg_gpmf"
-version = "2.0"
+version = "3.1"
 description = "Paket-Fassade fuer rpg_gpmf."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,12 +17,18 @@ classifiers = [
 ]
 dependencies = [
     "gpxpy",
+    "lxml",
+    "numpy",
     "overpy",
+    "pandas",
     "pyexiv2",
+    "PyYAML",
+    "requests",
     "rpg_geo",
     "rpg_gpx",
     "rpg_utils",
-    "scipy"
+    "scipy",
+    "tzlocal"
 ]
 
 [tool.setuptools.packages.find]
