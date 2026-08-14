@@ -26,7 +26,6 @@ flowchart TD
         M6["<b>rpg_overlay</b><br/>Video<br/>Overlays"]
     end
 
-    RPG --- Modules
 ```
 
 ---
@@ -122,33 +121,45 @@ flowchart TD
 
     FFMPEG["gpmf_ffmpeg"]
     GEO["gpmf_geo"]
-    DEM["gpmf_dem"]
-    TZ["gpmf_tz"]
-    EXIF_FILE["gpmf_exif / gpmf_file"]
-    TRACK["gpmf_track"]
-    GPMF["gpmf_gpmf"]
+    EXIF["gpmf_exif"]
+
+    KLV["gpmf_klv"]
+    META["gpmf_meta"]
+    GPX["gpmf_gpx"]
+    WRITER["gpmf_writer"]
 
     CONST --> FFMPEG
     CONST --> GEO
-    CONST --> DEM
+    CONST --> EXIF
 
-    GEO --> TZ
+    GEO --> EXIF
+    FFMPEG --> KLV
 
-    FFMPEG --> EXIF_FILE
-    TZ --> EXIF_FILE
-    DEM --> EXIF_FILE
-
-    EXIF_FILE --> TRACK
-    TRACK --> GPMF
+    KLV --> META
+    META --> GPX
+    META --> WRITER
+    EXIF --> WRITER
 ```
 
-Konfiguration & Basiskomponenten (gpmf_const, gpmf_ffmpeg): Stellen Systempfade, Standard-Schwellenwerte und externe Executables für alle übergeordneten Module bereit.
+Konfiguration & Hardware-Schnittstellen (gpmf_const, gpmf_ffmpeg):
 
-Räumlich-Zeitliche Kontextauflösung (gpmf_geo, gpmf_dem, gpmf_tz): Liefern basierend auf Koordinaten die Geofaktorisierung (Städte, Länder, Höhen, IANA-Zeitzonen).
+Stellen globale Systempfade, Standard-Schwellenwerte (z. B. GPS-Filtergrenzen), Dateiendungs-Konstanten sowie Anbindungen an externe Binaries (ffmpeg, ffprobe) für alle übergeordneten Verarbeitungsstufen bereit.
 
-Medien- & Dateiverwaltung (gpmf_file, gpmf_exif): Kapseln physische Dateien und wenden ermittelte Raum-Zeit-Metadaten auf Exif-, IPTC- und XMP-Strukturen an.
+Räumlich-Zeitliche Kontextauflösung & Geodaten (gpmf_geo):
 
-Telemetrie- & Trackprozessierung (gpmf_track, gpmf_gpmf): Verarbeiten Roh-Binärstreams aus Videos, extrahieren Trajektorien und synchronisieren diese über die gesamte Pipeline hinweg.
+Übernimmt die geographische Datenverwaltung (KDTree-Nachbarschaftssuche, IANA-Zeitzonen, Höhenmodelle/DEM und Reverse-Geocoding via GeoNames/OSM) zur Auflösung räumlicher Kontextinformationen.
+
+Metadaten-Anreicherung & Bildeinbettung (gpmf_exif):
+
+Nutzt die bereitgestellten Geodaten und Zeitzonen zur Bildmetadatenverarbeitung. Schreibt und synchronisiert präzise Zeit-, Autoren- und Ortsangaben in EXIF-, IPTC- und XMP-Strukturen von Mediendateien.
+
+Telemetrie-Parsing & Daten-Extraktion (gpmf_klv, gpmf_meta):
+
+Analysiert und dekodiert die binären KLV-Streams (Key-Length-Value / GPMF) aus GoPro-Videodateien, extrahiert rohe GPS-/IMU-Telemetriedaten und bereitet diese in strukturierten Datenmodellen auf.
+
+Export & Generierung (gpmf_gpx, gpmf_writer):
+
+Sicherer Export und Konvertierung der prozessierten Trajektorien und Metadaten in Zielformate wie GPX, KML oder CSV sowie die strukturierte Ausgabe und Modifikation der Zielmedien.
 
 ### Abhängigkeiten
 
