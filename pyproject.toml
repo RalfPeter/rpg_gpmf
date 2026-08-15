@@ -1,19 +1,28 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "rpg_gpmf"
-version = "4.2"
+version = "4.3.2"
 description = "Paket-Fassade fuer rpg_gpmf."
 readme = "README.md"
 requires-python = ">=3.10"
+license = { text = "MIT" }
 authors = [
     { name = "RalfPeter", email = "ralfpeter.bergheim@gmail.com" }
 ]
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
     "gpxpy",
@@ -31,5 +40,10 @@ dependencies = [
     "tzlocal"
 ]
 
+[project.urls]
+Homepage = "https://github.com/RalfPeter/rpg_gpmf"
+Repository = "https://github.com/RalfPeter/rpg_gpmf.git"
+Issues = "https://github.com/RalfPeter/rpg_gpmf/issues"
+
 [tool.setuptools.packages.find]
-where = ["."]
+where = ["rpg_gpmf"]

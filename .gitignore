@@ -18,7 +18,16 @@ build/
 # System-Dateien
 Thumbs.db
 
+# Dokumentation / Interne Ordner
+doc/
+
+# Data & Cache (Geo-Daten, Datenbanken, Cache-Dateien)
+data/
+*.pickle
+*.sqlite
+
 # Anwendungsdaten, Configs & Crashlogs
+*.png
 *.yaml
 *.cfg
 *crashlog.txt
